@@ -4,9 +4,9 @@
 
 grey{solv3d_m1_f1r5t_r3v_ch4lleng3_heh3}
 
-1.![gdb](Screenshots/gdb.png)
+### 1.![gdb](Screenshots/gdb.png)
 
-2.What Function a Does
+### 2.What Function a Does
 Input: A pointer to a null-terminated string (char *str).
 
 Process:
@@ -24,7 +24,7 @@ strlen() — it does exactly what this function is doing.
 
 Function a is a manual reimplementation of strlen
 
-3.dissamble ghidra and go to main funtion:
+### 3.dissamble ghidra and go to main funtion:
 Call Function a()
 
 
@@ -34,7 +34,7 @@ Calls function a() with the input string.
 }
 Checks if the return value is 0xf (decimal 15).
 
-4.Function b 
+### 4.Function b 
 ```bash
 (gdb) break b
 Note: breakpoints 1 and 2 also set at pc 0x40121f.
@@ -59,9 +59,9 @@ Let's convert it to unsigned 64-bit and also to hex:
 unsigned_value = 18446744073709551616 - 4477118353284162001
                = 13969625720425389615
 
-5.Analyze the c function and it will come out as RC4 encryption.
+### 5.Analyze the c function and it will come out as RC4 encryption.
 
-6.With all the hint given in the question:
+### 6.With all the hint given in the question:
 -key = 13969625720425389615 (from question 3)
 -cyphertext = d158158aeeb5bb520c6ba4ab6d7db7(got from enc function)
 

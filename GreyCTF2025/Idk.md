@@ -1,6 +1,6 @@
 ![idk](Screenshots/idk.png)
 
-📝 Challenge Summary
+## 📝 Challenge Summary
 We were given 5 files:
 
 message.txt: Contains RSA public key (N, e) and a ciphertext c
@@ -13,8 +13,8 @@ verifier.py: Confirms correctness of a proof without knowing p and q
 
 Our goal was to decrypt the ciphertext encrypted under RSA using an unknown private key.
 
-🔍 Analysis
-🔑 1. Understanding the RSA Setup
+## 🔍 Analysis
+## 🔑 1. Understanding the RSA Setup
 message.txt gave us:
 
 617-digit RSA modulus N
@@ -27,7 +27,7 @@ This fits a standard RSA encryption:
 
 But N is too large to factor directly, and the prover.py uses fake primes (p = q = 1337), so they’re no help.
 
-🧠 2. Understanding the Proof Protocol
+## 🧠 2. Understanding the Proof Protocol
 The prover.py script constructs a zero-knowledge proof based on a secret value F_bytes = b'this_is_a_secret', which is used to:
 
 Deterministically generate values rho_i and theta_j using SHA256
@@ -42,7 +42,7 @@ mus: square roots of theta_j, or 0
 
 These values are sent to a verifier that only knows N and F_bytes, to confirm the prover has the secret key without leaking it.
 
-⚠️ Key Insight
+## ⚠️ Key Insight
 Both dump1.txt and dump2.txt start with the same hex string:
 
 bash
@@ -53,13 +53,13 @@ That means both dumps came from the same challenge session with the same inputs.
 
 So: the two dumps likely contain different roots for the same values.
 
-🔓 Exploit: Recovering p and q
+## 🔓 Exploit: Recovering p and q
 This is a classic RSA vulnerability:
 
 If you know two different square roots 
 
 
-🧮 Recovered Prime
+## 🧮 Recovered Prime
 
 p = 14226023...5801 (617-bit number)
 q = N // p
@@ -69,7 +69,7 @@ q = N // p
 
 grey{how_i_swear_you_shouldve_had_0_knowledge}
 
-✅ Conclusion
+## ✅ Conclusion
 The challenge was a great exercise in exploiting ZKP transcripts and understanding how leaking alternate square roots can fatally compromise RSA. Even though the zero-knowledge protocol is sound, reusing the same parameters (F_bytes) and leaking multiple runs gave just enough info to break the system.
 
 all vibe solved with chatgpt.
